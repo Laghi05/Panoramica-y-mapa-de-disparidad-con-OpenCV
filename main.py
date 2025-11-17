@@ -19,16 +19,17 @@ ruta_destino = Path(__file__).parent/'imagenes'/'panoramica'/'panoramica.jpg'
 ###### EJECUTE MAIN.PY CON CADA VERSION DE ESTOS BLOQUES EN EL ORDEN INDICADO PARA
 #              EXPERIMENTAR LO QUE SE PUEDE LOGRAR CON ESTE CODIGO              
 
-#PRIMERA EJECUCION
-imagenes = ["imagenes/panoramica/1.jpg", "imagenes/panoramica/2.jpg"]    
 ref = 0 #indice imagen de referencia
 proy = 1 #indice imagen de proyeccion (homografia)
 
+#PRIMERA EJECUCION
+imagenes = ["imagenes/panoramica/1.jpg", "imagenes/panoramica/2.jpg"]    
+
 #SEGUNDA EJECUCION (comente la anterior)
-#imagenes = ["/imagenes/panoramica/panoramica.jpg", "/imagenes/panoramica/3.jpg"]
+#imagenes = ["imagenes/panoramica/panoramica.jpg", "imagenes/panoramica/3.jpg"]
 
 #TERCERA EJECUCION (si usa tres o mas imagenes a la vez, la panoramica final sera generada por un algoritmo)
-#imagenes = ["/imagenes/panoramica/1.jpg", "/imagenes/panoramica/2.jpg", "/imagenes/panoramica/3.jpg"]
+#imagenes = ["imagenes/panoramica/1.jpg", "imagenes/panoramica/2.jpg", "imagenes/panoramica/3.jpg"]
 #ref = 1 #descomente esto tambien
 
 def crear_panoramica(imagenes: list):
@@ -68,12 +69,12 @@ def crear_panoramica(imagenes: list):
     print('Matriz de homografia:')
     print(homografias)
         
-    if len(imagenes) == 2:
+    if len(imgs) == 2:
         
         #Generacion de panoramica usando matrices de homografia
         panoramica = panoramica_manual(imgs, homografias, ref, proy)
         
-    elif len(imagenes) >= 3:
+    elif len(imgs) >= 3:
         #Cargar imagenes
         imgs = cargar_imagenes(imagenes)
         
@@ -81,7 +82,10 @@ def crear_panoramica(imagenes: list):
         panoramica = stitcher_pan(imgs)
     else:
         print('Por lo menos dos fotos')
-        
+    
+    cv.imshow('Panoramica', panoramica)
+    cv.waitKey(0)
+    cv.destroyAllWindows()    
     cv.imwrite(str(ruta_destino), panoramica)
     
 crear_panoramica(imagenes)
