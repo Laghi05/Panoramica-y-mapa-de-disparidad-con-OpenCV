@@ -32,7 +32,7 @@ imagenes = ["imagenes/panoramica/1.jpg", "imagenes/panoramica/2.jpg"]
 #imagenes = ["imagenes/panoramica/1.jpg", "imagenes/panoramica/2.jpg", "imagenes/panoramica/3.jpg"]
 #ref = 1 #descomente esto tambien
 
-def crear_panoramica(imagenes: list):
+def urban_insight(imagenes: list):
     #Cargar
     imgs = cargar_imagenes(imagenes)
     mostrar_imagenes('Imagenes originales', imgs)
@@ -88,5 +88,5 @@ def crear_panoramica(imagenes: list):
     cv.destroyAllWindows()    
     cv.imwrite(str(ruta_destino), panoramica)
     
-crear_panoramica(imagenes)
+urban_insight(imagenes)
 os.startfile(str(ruta_destino))
